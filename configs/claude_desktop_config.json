@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "weightedshares": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://weightedshares.com/mcp"]
+    }
+  }
+}

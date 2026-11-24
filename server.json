@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.123mason123/weightedshares-mcp",
+  "title": "WeightedShares — SEC EDGAR Buybacks vs. SBC & Dilution MCP",
+  "description": "Free SEC EDGAR XBRL data for U.S. stock buybacks, stock-based compensation (SBC), RSU tax withholdings, True FCF (FCF − SBC), Form 4 insider selling, and 13F superinvestor dilution audits.",
+  "version": "1.0.0",
+  "websiteUrl": "https://weightedshares.com",
+  "repository": {
+    "url": "https://github.com/123mason123/weightedshares-mcp",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://weightedshares.com/logo-512.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://weightedshares.com/mcp"
+    }
+  ]
+}
