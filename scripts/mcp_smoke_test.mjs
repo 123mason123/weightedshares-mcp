@@ -38,7 +38,7 @@ console.log(`[weightedshares-mcp] Testing ${ENDPOINT}...`);
 const metaRes = await fetch(ENDPOINT, { headers: { Accept: "application/json" } });
 assert.equal(metaRes.status, 200, `GET ${ENDPOINT} expected HTTP 200, got ${metaRes.status}`);
 const meta = await metaRes.json();
-assert.equal(meta.server?.name, "weightedshares-sec-mcp");
+assert.equal(meta.name, "weightedshares-sec-mcp");
 console.log(`  PASS  GET manifest (${meta.tools?.length} tools, protocol ${meta.protocolVersion})`);
 
 // 2. initialize
@@ -72,8 +72,10 @@ const cmp = parseToolJson(
   ),
   "compare_companies_dilution(NVDA, AMD)",
 );
-assert.ok(cmp.comparison?.length === 2);
-console.log(`  PASS  compare_companies_dilution(NVDA vs AMD) -> ${cmp.sourceUrl}`);
+assert.equal(cmp.companyA?.ticker, "NVDA");
+assert.equal(cmp.companyB?.ticker, "AMD");
+assert.ok(cmp.compareUrl?.includes("weightedshares.com/compare/"));
+console.log(`  PASS  compare_companies_dilution(NVDA vs AMD) -> ${cmp.compareUrl}`);
 
 // 6. get_sec_screen
 const screen = parseToolJson(
@@ -97,8 +99,9 @@ const buffett = parseToolJson(
   "get_superinvestor_dilution(warren-buffett)",
 );
 assert.equal(buffett.slug, "warren-buffett");
+assert.ok(Array.isArray(buffett.holdings) && buffett.holdings.length >= 5);
 console.log(
-  `  PASS  get_superinvestor_dilution(warren-buffett) -> weighted 5Y share change: ${buffett.audit?.weightedShareChangePct}%`,
+  `  PASS  get_superinvestor_dilution(warren-buffett) -> weighted 5Y share CAGR: ${buffett.portfolioMetrics?.weightedShareCagrPct}%/yr`,
 );
 
 // 8. search_sec_companies
