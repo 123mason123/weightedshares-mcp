@@ -1,0 +1,22 @@
+{
+  "name": "weightedshares-mcp",
+  "version": "1.0.0",
+  "description": "Free read-only SEC EDGAR XBRL MCP server (Streamable HTTP + stdio bridge) for U.S. stock buybacks vs. SBC, RSU tax withholdings, True FCF, Form 4 insider selling, and 13F superinvestor dilution audits.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://weightedshares.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/123mason123/weightedshares-mcp.git"
+  },
+  "bin": {
+    "weightedshares-mcp": "./src/stdio-bridge.mjs"
+  },
+  "scripts": {
+    "start": "node ./src/stdio-bridge.mjs",
+    "test": "node ./scripts/mcp_smoke_test.mjs"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

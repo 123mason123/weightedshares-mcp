@@ -161,3 +161,18 @@ Every MCP response enforces the same audited SEC accounting rules used on [weigh
 - **Open Data Attribution (`CC BY 4.0`)**: SEC-derived outputs returned by WeightedShares MCP are free to use in research notes, Substack newsletters, blogs, dashboards, and AI agent responses — please attribute with a link back to [WeightedShares.com](https://weightedshares.com) (and the `sourceUrl` returned by the tool).
 - **Repository Code License**: Configuration templates and smoke test scripts in this repository are released under the [MIT License](./LICENSE).
 - **Contact**: `hello@weightedshares.com`
+
+## Docker / Local stdio Bridge
+
+For MCP hosts or registries that run a local stdio container (such as Glama or Docker-based MCP runners), this repository also ships a zero-dependency Node.js stdio-to-Streamable-HTTP bridge (`src/stdio-bridge.mjs`) and `Dockerfile`:
+
+```bash
+docker build -t weightedshares-mcp .
+docker run -i --rm weightedshares-mcp
+```
+
+Or run directly with Node.js >= 20 (no `npm install` required):
+
+```bash
+node src/stdio-bridge.mjs
+```
